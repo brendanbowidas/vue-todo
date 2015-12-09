@@ -44,15 +44,15 @@ new Vue({
     data: {
 
         tasks: [
-            {body: "kiss my butt", completed: false},
-            {body: "kiss my mbm", completed: false},
-            {body: "kidd my butddt", completed: true},
+            {body: "yseyesyesyes", completed: false},
+            {body: "sdhddshhs", completed: false},
+            {body: "yltgt7yo", completed: true},
         ],
 
         otherTasks: [
-            {body: 'rick james', completed: false},
-            {body: 'diane forney', completed: false},
-            {body: 'gerard weatherby', completed: false},
+            {body: 'drdudu45', completed: false},
+            {body: '43473743', completed: false},
+            {body: 'jdjd', completed: false},
         ]
     },
 
