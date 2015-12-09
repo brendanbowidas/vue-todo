@@ -20,14 +20,25 @@
 
 
 
+
+ <!----------------------------------------------------------------------->
+
+
+
+
    <template id="tasks-template">
        <h1>My tasks <span v-if="remaining">{{remaining}}</span></h1>
        <ul v-show="list.length">
            <li :class="{'completed': task.completed}" v-for="task in list" @click="task.completed = !task.completed">{{task.body}}
-           <strong @click="delete(task)">x</strong></li>
+           <input v-show="task.editing" type="text" v-model="task.body">
+           <strong @click="delete(task)">x</strong><br />    <button @click="edit(task)">Edit</button></li>
        </ul>
        <p v-else>No Tasks</p>
-       <button @click="completed()">Clear completed</button>
+       <button @click="completed()">Clear completed</button><br/><br/>
+       <input type="text" v-model="newTask">
+       <button @click="addTask(newTask)">Add new Task</button>
+
+
    </template>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
     <script src="app.js"></script>
