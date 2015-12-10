@@ -7,6 +7,32 @@
         .completed {
             text-decoration: line-through;
         }
+
+        .alert{
+            position: relative;
+            background: #ddd;
+            border: 1px solid red;
+            padding: 1em;
+            width: 200px;
+        }
+
+        .alert__close{
+            position: absolute;
+            top: 1em;
+            right: 1em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .alert-success{
+            background: green;
+        }
+
+        .alert-error{
+            background: red;
+        }
+
+
     </style>
 
 </head>
@@ -14,8 +40,8 @@
 
    <div id="app">
 
-       <tasks :list="tasks"></tasks>
-       <tasks :list="otherTasks"></tasks>
+       <alert type="success"><strong>SUCCESS</strong>updated</alert>
+       <alert type="error"><strong>error</strong> mewmgeweg</alert>
    </div>
 
 
@@ -29,7 +55,7 @@
    <template id="tasks-template">
        <h1>My tasks <span v-if="remaining">{{remaining}}</span></h1>
        <ul v-show="list.length">
-           <li :class="{'completed': task.completed}" v-for="task in list" @click="task.completed = !task.completed">{{task.body}}
+           <li :class="{'completed': task.completed}" v-for="task in list" @click="task.completed = !task.completed">{{task.title}}
            <input v-show="task.editing" type="text" v-model="task.body">
            <strong @click="delete(task)">x</strong><br />    <button @click="edit(task)">Edit</button></li>
        </ul>
@@ -40,7 +66,18 @@
 
 
    </template>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.min.js"></script>
+
+
+   <template id="alert-template">
+       <div :class="alertClasses" v-show="show">
+           <slot></slot>
+           <span class="alert__close" @click="toggle()">x</span>
+       </div>
+   </template>
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.11/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.17/vue-resource.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

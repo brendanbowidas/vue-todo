@@ -1,4 +1,4 @@
-Vue.component('tasks', {
+ /*Vue.component('tasks', {
    props: [
      'list',
    ],
@@ -14,6 +14,10 @@ Vue.component('tasks', {
 
             }).length;
         }
+    },
+
+    created: function(){
+        this.fetchTaskList();
     },
 
     methods: {
@@ -47,30 +51,64 @@ Vue.component('tasks', {
             task.editing = true;
 
 
+        },
+
+        fetchTaskList: function(){
+
+            var vm = this;
+            var resource = this.$resource('http://jsonplaceholder.typicode.com/todos/:id')
+            resource.get(function(tasks){
+
+               vm.list = tasks;
+            });
         }
     }
 
 
 });
+ */
 
 
+Vue.component('alert', {
+   props: ['type'],
+   template: '#alert-template',
+    data: function(){
+
+        return {
+            show: true
+        }
+    },
+
+      computed: {
+        alertClasses: function(){
+            var type = this.type;
+
+            return {
+                'alert': true,
+                'alert-success': type === 'success',
+                'alert-error': type === 'alert'
+            }
+
+        }
+    },
+   methods: {
+
+       toggle: function(){
+
+           this.show = !this.show;
+
+       }
+
+   }
+
+});
 
 
 new Vue({
    el: "#app",
     data: {
 
-        tasks: [
-            {body: "yseyesyesyes", completed: false, editing: false},
-            {body: "sdhddshhs", completed: false, editing: false},
-            {body: "yltgt7yo", completed: true, editing: false},
-        ],
 
-        otherTasks: [
-            {body: 'drdudu45', completed: false, editing: false},
-            {body: '43473743', completed: false, editing: false},
-            {body: 'jdjd', completed: false, editing: false},
-        ]
     },
 
 
